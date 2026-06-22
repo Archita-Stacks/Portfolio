@@ -11,6 +11,7 @@ import WebRoundedIcon from "@mui/icons-material/WebRounded";
 import "./app.css";
 
 const introText = "Welcome to Archita's work";
+const PROFILE_IMAGE_URL = "";
 
 const navItems = [
   { label: "Skills", href: "#skills" },
@@ -188,7 +189,7 @@ function ProfileSvg({ imageUrl }) {
       className="hero__profile-svg"
       viewBox="0 0 320 360"
       role="img"
-      aria-label="Archita profile"
+      aria-label="Profile avatar"
     >
       <defs>
         <linearGradient id="profileFrameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -244,9 +245,6 @@ function ProfileSvg({ imageUrl }) {
             d="M96 256c16-35 44-53 64-53s48 18 64 53"
             fill="rgba(255,255,255,0.18)"
           />
-          <text x="160" y="306" textAnchor="middle" className="hero__profile-text">
-            Upload Photo
-          </text>
         </>
       )}
 
@@ -262,7 +260,6 @@ function ProfileSvg({ imageUrl }) {
 
 export default function AppPage() {
   const [typedText, setTypedText] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     let currentIndex = 0;
@@ -276,14 +273,6 @@ export default function AppPage() {
 
     return () => window.clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    return () => {
-      if (imageUrl) {
-        URL.revokeObjectURL(imageUrl);
-      }
-    };
-  }, [imageUrl]);
 
   useEffect(() => {
     const revealCards = document.querySelectorAll(".core-value-card, .accomplishment-card");
@@ -312,19 +301,6 @@ export default function AppPage() {
     return () => observer.disconnect();
   }, []);
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files?.[0];
-    if (!file) {
-      return;
-    }
-
-    if (imageUrl) {
-      URL.revokeObjectURL(imageUrl);
-    }
-
-    setImageUrl(URL.createObjectURL(file));
-  };
-
   return (
     <div className="portfolio-page">
       <Container maxWidth="xl" className="page-container">
@@ -349,10 +325,9 @@ export default function AppPage() {
             </p>
           </div>
 
-          <label className="hero__photo-shell">
-            <ProfileSvg imageUrl={imageUrl} />
-            <input hidden accept="image/*" type="file" onChange={handleImageUpload} />
-          </label>
+          <div className="hero__photo-shell hero__photo-shell--locked">
+            <ProfileSvg imageUrl={PROFILE_IMAGE_URL} />
+          </div>
         </section>
 
         <section id="skills" className="section section--skills">

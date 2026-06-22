@@ -22,6 +22,7 @@ import StorageRoundedIcon from "@mui/icons-material/StorageRounded";
 import WebRoundedIcon from "@mui/icons-material/WebRounded";
 
 const introText = "Welcome to Archita's work";
+const PROFILE_IMAGE_URL = "";
 
 const navItems = [
   { label: "Skills", href: "#skills" },
@@ -187,7 +188,6 @@ function LogoBadge({ short, accent }) {
 
 export default function App() {
   const [typedText, setTypedText] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     let currentIndex = 0;
@@ -201,28 +201,6 @@ export default function App() {
 
     return () => window.clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    return () => {
-      if (imageUrl) {
-        URL.revokeObjectURL(imageUrl);
-      }
-    };
-  }, [imageUrl]);
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files?.[0];
-    if (!file) {
-      return;
-    }
-
-    if (imageUrl) {
-      URL.revokeObjectURL(imageUrl);
-    }
-
-    const nextUrl = URL.createObjectURL(file);
-    setImageUrl(nextUrl);
-  };
 
   return (
     <Box
@@ -307,7 +285,7 @@ export default function App() {
           </Box>
 
           <Box
-            component="label"
+            component="div"
             sx={{
               maxWidth: 420,
               width: "100%",
@@ -315,11 +293,11 @@ export default function App() {
               pt: { xs: 2, md: 12 },
               display: "flex",
               justifyContent: "center",
-              cursor: "pointer",
+              cursor: "default",
             }}
           >
             <Avatar
-              src={imageUrl}
+              src={PROFILE_IMAGE_URL}
               alt="Archita profile"
               sx={{
                 width: 220,
@@ -329,10 +307,7 @@ export default function App() {
                 fontSize: "1rem",
                 border: `1px solid ${alpha("#ffffff", 0.12)}`,
               }}
-            >
-              Upload Photo
-            </Avatar>
-            <input hidden accept="image/*" type="file" onChange={handleImageUpload} />
+            />
           </Box>
         </Box>
 
