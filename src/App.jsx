@@ -22,7 +22,7 @@ import StorageRoundedIcon from "@mui/icons-material/StorageRounded";
 import WebRoundedIcon from "@mui/icons-material/WebRounded";
 
 const introText = "Welcome to Archita's work";
-const PROFILE_IMAGE_URL = "";
+const PROFILE_IMAGE_URL = "/avatar_800KB.jpg";
 
 const navItems = [
   { label: "Skills", href: "#skills" },

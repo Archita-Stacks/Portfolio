@@ -11,7 +11,7 @@ import WebRoundedIcon from "@mui/icons-material/WebRounded";
 import "./app.css";
 
 const introText = "Welcome to Archita's work";
-const PROFILE_IMAGE_URL = "";
+const PROFILE_IMAGE_URL = "/avatar_800KB.jpg";
 
 const navItems = [
   { label: "Skills", href: "#skills" },
@@ -187,73 +187,35 @@ function ProfileSvg({ imageUrl }) {
   return (
     <svg
       className="hero__profile-svg"
-      viewBox="0 0 320 360"
+      viewBox="0 0 280 280"
       role="img"
       aria-label="Profile avatar"
     >
       <defs>
-        <linearGradient id="profileFrameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f4f4f4" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#6e8798" stopOpacity="0.35" />
-        </linearGradient>
-        <linearGradient id="profileBackgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#16202a" />
-          <stop offset="100%" stopColor="#0b0f13" />
-        </linearGradient>
         <clipPath id="profileCircleClip">
-          <circle cx="160" cy="148" r="88" />
+          <circle cx="140" cy="140" r="118" />
         </clipPath>
       </defs>
-
-      <rect x="18" y="18" width="284" height="324" rx="34" fill="#0e0e0e" />
-      <rect
-        x="18"
-        y="18"
-        width="284"
-        height="324"
-        rx="34"
-        fill="url(#profileBackgroundGradient)"
-        opacity="0.92"
-      />
-      <rect
-        x="18"
-        y="18"
-        width="284"
-        height="324"
-        rx="34"
-        fill="none"
-        stroke="url(#profileFrameGradient)"
-        strokeWidth="2"
-      />
-      <circle cx="160" cy="148" r="103" fill="rgba(255,255,255,0.04)" />
-      <circle cx="160" cy="148" r="95" fill="none" stroke="rgba(255,255,255,0.12)" />
 
       {imageUrl ? (
         <image
           href={imageUrl}
-          x="72"
-          y="60"
-          width="176"
-          height="176"
+          x="22"
+          y="22"
+          width="236"
+          height="236"
           preserveAspectRatio="xMidYMid slice"
           clipPath="url(#profileCircleClip)"
         />
       ) : (
         <>
-          <circle cx="160" cy="124" r="44" fill="rgba(255,255,255,0.18)" />
+          <circle cx="140" cy="112" r="44" fill="rgba(255,255,255,0.18)" />
           <path
-            d="M96 256c16-35 44-53 64-53s48 18 64 53"
+            d="M76 236c16-35 44-53 64-53s48 18 64 53"
             fill="rgba(255,255,255,0.18)"
           />
         </>
       )}
-
-      <path
-        d="M80 278c20 20 46 30 80 30 31 0 58-9 80-30"
-        fill="none"
-        stroke="rgba(255,255,255,0.1)"
-        strokeWidth="1.5"
-      />
     </svg>
   );
 }
